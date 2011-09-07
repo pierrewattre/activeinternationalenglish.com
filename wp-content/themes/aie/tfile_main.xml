@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<content>
+	<section>
+		<image Image="wp-content/themes/aie/image_1.jpg" width="2000" height="1450"/>
+		<image Image="wp-content/themes/aie/image_2.jpg" width="2000" height="1450"/>
+		<image Image="wp-content/themes/aie/image_3.jpg" width="2000" height="1450"/>
+		<image Image="wp-content/themes/aie/image_4.jpg" width="2000" height="1450"/>
+	</section>
+</content>
