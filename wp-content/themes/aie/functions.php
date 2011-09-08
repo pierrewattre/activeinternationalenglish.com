@@ -619,6 +619,6 @@ function my_multi_col($content) {
     $return .= '</div>';
 	}
 	
-	echo wpautop($return);
+	return wpautop($return);
 }
 add_filter('the_content', 'my_multi_col');

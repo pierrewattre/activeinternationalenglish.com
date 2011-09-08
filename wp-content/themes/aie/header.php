@@ -77,7 +77,7 @@
 
 <body <?php body_class(); ?> id="page1">
   <div id="main_bg">
-    <img src="<?php echo get_template_directory_uri(); ?>/image_1.jpg"/>
+    <img src="<?php echo get_template_directory_uri(); ?>/image_3.jpg"/>
   </div>
 <div id="page" class="hfeed">
   <header id="branding" role="banner">

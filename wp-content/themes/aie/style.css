@@ -60,7 +60,7 @@ embed { vertical-align:top; }
 article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video{ display: block; }
 mark, rp, rt, ruby, summary, time { display: inline }
 
-#main_bg{
+#main_bg {
 	position:absolute;
 	width:100%;
 	height: 1450px;
@@ -70,6 +70,7 @@ mark, rp, rt, ruby, summary, time { display: inline }
 }
 
 #main_bg embed, #main_bg object { min-height:1450px; }
+
 #menu {
   position:relative;
   height:78px;
@@ -106,6 +107,10 @@ a:hover {
   margin: 0 auto;
   position: relative;
   width: 975px; 
+}
+
+iframe {
+  
 }
 
 /* Header */
@@ -152,12 +157,12 @@ nav#access ul li a {
 
 nav#access ul li a:hover {
   text-decoration: none;
-  color: #d52d00;
+  color: #ea0d4b;
 }
 
 nav#access ul li.current_page_item a {
   text-decoration: none;
-  color: #d52d00;
+  color: #ea0d4b;
 }
 
 nav#access .assistive-text {
@@ -171,22 +176,24 @@ nav#access .assistive-text {
 }
 
 /* Content */
-section#content {
+#content {
   margin-bottom: 35px;
 }
 
 .entry-content {
   background: url(images/content-tail2.gif);
-  min-height: 808px;
+  min-height: 1000px;
   padding-bottom: 20px;
+  padding: 0 20px 20px 20px;
+}
+
+.entry-content.twocol {
+  padding: 0;
 }
 
 body.home .entry-content {
   background: url(images/content-tail.png);
-}
-
-.entry-content.onecol {
-  padding: 0 20px 20px 20px;
+  min-height: 820px;
 }
 
 .content_left {
@@ -198,6 +205,55 @@ body.home .entry-content {
 .content_right {
   float: right;
   width: 300px;
+}
+
+#content ul {
+  list-style-type: disc;
+  padding: 10px;
+  margin-left: 24px;
+}
+
+#content ul li {
+  padding: 6px 0 6px 6px;
+}
+
+/* Forms */
+
+input[type="text"] {
+  padding: 5px;
+  border: 1px solid #D8DEE2;
+  width: 300px;
+  font-size: inherit;
+}
+
+textarea {
+  padding: 5px;
+  border: 1px solid #D8DEE2;
+  width: 95%;
+  font-size: inherit;
+}
+
+input[type="submit"] {
+  border: 1px solid #D4D4D4;
+  background-color: #ECECEC;
+  padding: 0.5em 1em;
+  font-size: inherit;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  margin: 10px 0;
+  border: 2px solid #FEF0C9;
+  background-color: #FCF8DC;
+  color: #381300;
+}
+
+table td, table th {
+  height: 30px;
+  padding: 6px;
+  text-align: center;
+  vertical-align: middle;
 }
 
 /* Footer */
@@ -224,7 +280,7 @@ h1 {
   color: #ea0d4b;
   font-weight: normal;
   letter-spacing: -0.05em;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
 h1 span {

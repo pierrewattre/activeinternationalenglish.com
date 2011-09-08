@@ -1,0 +1,12 @@
+AIE WORK TODO
+=============
+
+- Links for sidebar on home page
+- Complete all pages locally
+- Finish basic CSS for tables, photos etc
+- 404 page and need to make sure default featured image is always right
+
+NOTES
+
+- How should we add the 'London 2011' info to the site?
+- What is the booking tab - does it just link to the booking form?
