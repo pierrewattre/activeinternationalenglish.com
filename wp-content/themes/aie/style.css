@@ -196,6 +196,16 @@ body.home .entry-content {
   min-height: 820px;
 }
 
+body.home #aie_logo {
+  background: url(images/aie.png) no-repeat;
+  height: 30px;
+  width: 100px;
+  z-index: 10000;
+  position: absolute;
+  top: 75px;
+  left: 5px;
+}
+
 .content_left {
   float: left;
   width: 640px;
