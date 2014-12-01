@@ -8,7 +8,8 @@ if ( ! function_exists( 'add_action' ) ) {
 	echo "Hi there!  I'm just a part of plugin, not much I can do when called directly.";
 	exit;
 }
-
+// reset
+$post_type = '';
 $args = array( 'public' => TRUE, '_builtin' => FALSE );
 foreach ( get_post_types( $args ) as $post_type ) {
 	$post_type_object = get_post_type_object($post_type);
@@ -48,12 +49,12 @@ foreach ( get_post_types( $args ) as $post_type ) {
 								'.side-info',
 								'#notice',
 								'#post-body h2',
-								'#media-buttons',
+								'#media-buttons, #wp-content-media-buttons',
 								'#wp-word-count',
 								'#slugdiv,#edit-slug-box',
 								'#misc-publishing-actions',
 								'#commentstatusdiv',
-								'#editor-toolbar #edButtonHTML, #quicktags'
+								'#editor-toolbar #edButtonHTML, #quicktags, #content-html'
 							);
 							
 							foreach ( $GLOBALS['_wp_post_type_features'][$post_type] as $post_type_support => $key ) {
@@ -64,7 +65,10 @@ foreach ( get_post_types( $args ) as $post_type ) {
 										$post_type_support = 'pageparentdiv';
 									if ( 'custom-fields' == $post_type_support )
 										$post_type_support = 'postcustom';
-									array_push( $metaboxes, '#' . $post_type_support . ', #' . $post_type_support . 'div' );
+									array_push( 
+										$metaboxes, 
+										'#' . $post_type_support . ', #' . $post_type_support . 'div, th.column-' . $post_type_support . ', td.' . $post_type_support
+									); // td for raw in edit screen
 							}
 							if ( function_exists('current_theme_supports') && 
 								 current_theme_supports( 'post-thumbnails', $post_type )
@@ -75,7 +79,7 @@ foreach ( get_post_types( $args ) as $post_type ) {
 
 							// quick edit areas, id and class
 							$quickedit_areas = array(
-								'div.row-actions .inline',
+								'div.row-actions, div.row-actions .inline',
 								'fieldset.inline-edit-col-left',
 								'fieldset.inline-edit-col-left label',
 								'fieldset.inline-edit-col-left label.inline-edit-author',
@@ -216,7 +220,7 @@ foreach ( get_post_types( $args ) as $post_type ) {
 									<textarea name="_mw_adminimize_own_options_<?php echo $post_type; ?>" 
 										cols="60" rows="3" 
 										id="_mw_adminimize_own_options_<?php echo $post_type; ?>" 
-										style="width: 95%;" ><?php echo _mw_adminimize_get_option_value('_mw_adminimize_own_' . $post_type . '_options'); ?></textarea>
+										style="width: 95%;" ><?php echo _mw_adminimize_get_option_value('_mw_adminimize_own_options_' . $post_type ); ?></textarea>
 									<br />
 									<?php _e('Possible nomination for ID or class. Separate multiple nominations through a carriage return.', FB_ADMINIMIZE_TEXTDOMAIN ); ?>
 								</td>
@@ -224,8 +228,7 @@ foreach ( get_post_types( $args ) as $post_type ) {
 									<textarea class="code" name="_mw_adminimize_own_values_<?php echo $post_type; ?>" 
 										cols="60" rows="3" 
 										id="_mw_adminimize_own_values_<?php echo $post_type; ?>" 
-										style="width: 95%;" >
-										<?php echo _mw_adminimize_get_option_value('_mw_adminimize_own_' . $post_type . '_values'); ?></textarea>
+										style="width: 95%;" ><?php echo _mw_adminimize_get_option_value('_mw_adminimize_own_values_' . $post_type ); ?></textarea>
 									<br />
 									<?php _e('Possible IDs or classes. Separate multiple values through a carriage return.', FB_ADMINIMIZE_TEXTDOMAIN ); ?>
 								</td>

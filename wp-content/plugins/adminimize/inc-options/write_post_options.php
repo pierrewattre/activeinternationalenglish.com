@@ -33,50 +33,47 @@ if ( ! function_exists( 'add_action' ) ) {
 							$metaboxes = array(
 								'#contextual-help-link-wrap',
 								'#screen-options-link-wrap',
-								'#titlediv',
+								'#title, #titlediv, th.column-title, td.title',
 								'#pageslugdiv',
-								'#tagsdiv,#tagsdivsb,#tagsdiv-post_tag',
-								'#formatdiv',
-								'#categorydiv,#categorydivsb',
+								'#tags, #tagsdiv,#tagsdivsb,#tagsdiv-post_tag, th.column-tags, td.tags',
+								'#categories, #categorydiv, #categorydivsb, th.column-categories, td.categories',
 								'#category-add-toggle',
-								'#postexcerpt',
-								'#trackbacksdiv',
-								'#postcustom',
-								'#commentsdiv',
+								'#date, #datediv, th.column-date, td.date, div.curtime',
 								'#passworddiv',
-								'#authordiv',
-								'#revisionsdiv',
 								'.side-info',
 								'#notice',
 								'#post-body h2',
-								'#media-buttons',
+								'#media-buttons, #wp-content-media-buttons',
 								'#wp-word-count',
 								'#slugdiv,#edit-slug-box',
 								'#misc-publishing-actions',
 								'#commentstatusdiv',
-								'#editor-toolbar #edButtonHTML, #quicktags'
+								'#editor-toolbar #edButtonHTML, #quicktags, #content-html, .wp-switch-editor.switch-html'
 							);
+							
+							$post_type = 'post';
+							foreach ( $GLOBALS['_wp_post_type_features'][$post_type] as $post_type_support => $key ) {
+								if ( post_type_supports( $post_type, $post_type_support ) )
+									if ( 'excerpt' === $post_type_support )
+										$post_type_support = $post_type . 'excerpt';
+									if ( 'page-attributes' === $post_type_support )
+										$post_type_support = 'pageparentdiv';
+									if ( 'custom-fields' == $post_type_support )
+										$post_type_support = $post_type . 'custom';
+									if ( 'post-formats' === $post_type_support )
+										$post_type_support = 'format';
+									array_push( 
+										$metaboxes, 
+										'#' . $post_type_support . ', #' . $post_type_support . 'div, th.column-' . $post_type_support . ', td.' . $post_type_support
+									); //th and td for raw in edit screen
+							}
 
 							if ( function_exists('current_theme_supports') && current_theme_supports( 'post-thumbnails', 'post' ) )
 								array_push($metaboxes, '#postimagediv');
-							if (class_exists('SimpleTagsAdmin'))
-								array_push($metaboxes, '#suggestedtags');
-							if (function_exists('tc_post'))
-								array_push($metaboxes, '#textcontroldiv');
-							if (class_exists('HTMLSpecialCharactersHelper'))
-								array_push($metaboxes, '#htmlspecialchars');
-							if (class_exists('All_in_One_SEO_Pack'))
-								array_push($metaboxes, '#postaiosp, #aiosp');
-							if (function_exists('tdomf_edit_post_panel_admin_head'))
-								array_push($metaboxes, '#tdomf');
-							if (function_exists('post_notification_form'))
-								array_push($metaboxes, '#post_notification');
-							if (function_exists('sticky_add_meta_box'))
-								array_push($metaboxes, '#poststickystatusdiv');
 
 							// quick edit areas, id and class
 							$quickedit_areas = array(
-								'div.row-actions .inline',
+								'div.row-actions, div.row-actions .inline',
 								'fieldset.inline-edit-col-left',
 								'fieldset.inline-edit-col-left label',
 								'fieldset.inline-edit-col-left label.inline-edit-author',
@@ -97,16 +94,10 @@ if ( ! function_exists( 'add_action' ) ) {
 								__('Title', FB_ADMINIMIZE_TEXTDOMAIN),
 								__('Permalink', FB_ADMINIMIZE_TEXTDOMAIN ),
 								__('Tags', FB_ADMINIMIZE_TEXTDOMAIN ),
-								__('Format', FB_ADMINIMIZE_TEXTDOMAIN),
 								__('Categories', FB_ADMINIMIZE_TEXTDOMAIN ),
 								__('Add New Category', FB_ADMINIMIZE_TEXTDOMAIN ),
-								__('Excerpt', FB_ADMINIMIZE_TEXTDOMAIN ),
-								__('Trackbacks', FB_ADMINIMIZE_TEXTDOMAIN ),
-								__('Custom Fields'),
-								__('Comments', FB_ADMINIMIZE_TEXTDOMAIN ),
+								__('Date'),
 								__('Password Protect This Post', FB_ADMINIMIZE_TEXTDOMAIN ),
-								__('Post Author'),
-								__('Post Revisions'),
 								__('Related, Shortcuts', FB_ADMINIMIZE_TEXTDOMAIN ),
 								__('Messages', FB_ADMINIMIZE_TEXTDOMAIN ),
 								__('h2: Advanced Options', FB_ADMINIMIZE_TEXTDOMAIN ),
@@ -118,22 +109,13 @@ if ( ! function_exists( 'add_action' ) ) {
 								__('HTML Editor Button')
 							);
 							
+							foreach ( $GLOBALS['_wp_post_type_features'][$post_type] as $post_type_support => $key ) {
+								if ( post_type_supports( $post_type, $post_type_support ) )
+									array_push( $metaboxes_names, ucfirst($post_type_support) );
+							}
+							
 							if ( function_exists('current_theme_supports') && current_theme_supports( 'post-thumbnails', 'post' ) )
 								array_push($metaboxes_names, __('Post Thumbnail', FB_ADMINIMIZE_TEXTDOMAIN) );
-							if (class_exists('SimpleTagsAdmin'))
-								array_push($metaboxes_names, 'Suggested tags from');
-							if (function_exists('tc_post'))
-								array_push($metaboxes_names, 'Text Control');
-							if (class_exists('HTMLSpecialCharactersHelper'))
-								array_push($metaboxes_names, 'HTML Special Characters');
-							if (class_exists('All_in_One_SEO_Pack'))
-								array_push($metaboxes_names, 'All in One SEO Pack');
-							if (function_exists('tdomf_edit_post_panel_admin_head'))
-								array_push($metaboxes_names, 'TDOMF');
-							if (function_exists('post_notification_form'))
-								array_push($metaboxes_names, 'Post Notification');
-							if (function_exists('sticky_add_meta_box'))
-								array_push($metaboxes_names, 'Post Sticky Status');
 							
 							// quick edit names
 							$quickedit_names = array(
