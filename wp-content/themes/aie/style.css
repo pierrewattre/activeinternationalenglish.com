@@ -229,7 +229,7 @@ body.home #aie_logo {
 
 /* Forms */
 
-input[type="text"] {
+input[type="text"], input[type="email"] {
   padding: 5px;
   border: 1px solid #D8DEE2;
   width: 300px;
