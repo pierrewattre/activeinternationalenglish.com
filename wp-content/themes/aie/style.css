@@ -15,22 +15,22 @@ Tags: dark, light, white, black, gray, one-column, two-columns, left-sidebar, ri
 a, abbr, acronym, address, applet, article, aside, audio,
 b, blockquote, big, body,
 center, canvas, caption, cite, code, command,
-datalist, dd, del, details, dfn, dl, div, dt, 
+datalist, dd, del, details, dfn, dl, div, dt,
 em, embed,
-fieldset, figcaption, figure, font, footer, form, 
+fieldset, figcaption, figure, font, footer, form,
 h1, h2, h3, h4, h5, h6, header, hgroup, html,
 i, iframe, img, ins,
-kbd, 
+kbd,
 keygen,
-label, legend, li, 
+label, legend, li,
 meter,
 nav,
 object, ol, output,
 p, pre, progress,
-q, 
+q,
 s, samp, section, small, span, source, strike, strong, sub, sup,
 table, tbody, tfoot, thead, th, tr, tdvideo, tt,
-u, ul, 
+u, ul,
 var{
   background: transparent;
   border: 0 none;
@@ -44,7 +44,7 @@ var{
 
 ol, ul { list-style: none; }
 blockquote, q { quotes: none; }
-table, table td { 
+table, table td {
   padding:0;
   border:none;
   border-collapse:collapse;
@@ -79,15 +79,15 @@ mark, rp, rt, ruby, summary, time { display: inline }
 
 
 /* Global properties ======================================================== */
-body { 
+body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 100%; 
+  font-size: 100%;
   line-height: 1em;
   color: #381300;
   /*background: url(images/image_1.jpg) no-repeat top center;*/
 }
 
-p {	
+p {
 	font-size: 15px;
 	color: #383838;
 	line-height: 1.600em;
@@ -95,7 +95,7 @@ p {
 }
 
 a {
-  color: #d52d00; 
+  color: #d52d00;
   outline: none;
 }
 
@@ -106,11 +106,11 @@ a:hover {
 .main {
   margin: 0 auto;
   position: relative;
-  width: 975px; 
+  width: 975px;
 }
 
 iframe {
-  
+
 }
 
 /* Header */
@@ -118,7 +118,7 @@ iframe {
   /*background: url(images/banner-4.png) no-repeat top center;*/
   position: relative;
   height: 411px;
-  margin-top: 10px;
+  margin-top: -10px; /* Was 10px - now -10 to make room for top lang selector */
   text-align: center;
 }
 
@@ -319,4 +319,46 @@ h2 {
   font-weight: normal;
   letter-spacing: -0.05em;
   padding-top: 20px;
+}
+
+#lang_sel_list {
+  width: auto;
+  margin-right: 20px;
+}
+
+header #lang_sel_list {
+  width: 997px;
+  margin: -5px auto 0 auto;
+}
+
+#lang_sel_list ul {
+  width: auto;
+  border: none;
+  text-align: center;
+}
+
+#lang_sel_list ul li {
+  display: inline-block;
+  float: none;
+  width: 100px;
+}
+
+#lang_sel_list ul a, #lang_sel_list_list ul a:visited {
+  background-color: transparent;
+  display: inline;
+  color: white;
+  border: none;
+}
+
+#lang_sel_list a.lang_sel_sel {
+  color: white;
+  font-weight: bold;
+}
+
+#lang_sel_list a.lang_sel_sel:hover {
+  color: white;
+}
+
+#lang_sel_list a.lang_sel_other {
+  color: white;
 }

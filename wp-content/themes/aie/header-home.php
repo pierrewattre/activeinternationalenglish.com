@@ -86,13 +86,13 @@
     fo.addParam("wmode", "transparent");
     fo.write("main_bg");
   </script>
-  
+
   <header id="branding" role="banner">
     <hgroup style="display: none">
 			<h1 id="site-title"><span><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span></h1>
 			<h2 id="site-description"><?php bloginfo( 'description' ); ?></h2>
 		</hgroup>
-		
+
 		<nav id="access" role="navigation">
 			<h3 class="assistive-text"><?php _e( 'Main menu', 'twentyeleven' ); ?></h3>
 			<?php /*  Allow screen readers / text browsers to skip the navigation menu and get right to the good stuff. */ ?>
@@ -102,11 +102,13 @@
 			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 			<div id="aie_logo"></div>
 		</nav><!-- #access -->
-  
+
+    <?php do_action('icl_language_selector'); ?>
+
     <div id="header_banner" role="banner">
       <div class="aligncenter"><a href="http://www.adobe.com/go/EN_US-H-GET-FLASH"><img src="http://www.adobe.com/images/shared/download_buttons/get_adobe_flash_player.png" alt="" /></a></div>
     </div>
-  
+
     <script type="text/javascript">
       var fo = new FlashObject("<?php echo get_template_directory_uri(); ?>/flash/header_v8.swf", "header", "100%", "411", "8", "");
       fo.addParam("quality", "high");
