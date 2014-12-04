@@ -2,9 +2,9 @@ jQuery(document).ready(function(){
     if(jQuery('form input[name="action"]').attr('value')=='add-tag'){
         jQuery('.form-wrap p[class="submit"]').before(jQuery('#icl_tax_menu').html());    
     }else{
-        jQuery('#edittag table[class="form-table"]').append(jQuery('#edittag table[class="form-table"] tr:last').clone());    
-        jQuery('#edittag table[class="form-table"] tr:last th:first').html('&nbsp;');
-        jQuery('#edittag table[class="form-table"] tr:last td:last').html(jQuery('#icl_tax_menu').html());        
+        jQuery('#edittag table[class="form-table"]:first').append(jQuery('#edittag table[class="form-table"] tr:last').clone());    
+        jQuery('#edittag table[class="form-table"]:first tr:last th:first').html('&nbsp;');
+        jQuery('#edittag table[class="form-table"]:first tr:last td:last').html(jQuery('#icl_tax_menu').html());  
     }    
     jQuery('#icl_tax_menu').remove();
        
@@ -38,8 +38,41 @@ jQuery(document).ready(function(){
             jQuery('.tagcloud').html(tag_cloud);
         });        
         
-   })     
-    
-        
+   });
+
+  /* This section reads the hidden div containg the JSON encoded array of categories for which no checkbox is to be displayed.
+   * This is done to ensure that they cannot be deleted
+   */
+  var defaultCategoryJSON, defaultCategoryJSONDiv, defaultCategoryIDs, key, id;
+
+  defaultCategoryJSONDiv = jQuery('#icl-default-category-ids');
+
+  if (defaultCategoryJSONDiv.length !== 0) {
+    defaultCategoryJSON = defaultCategoryJSONDiv.html();
+    defaultCategoryIDs = jQuery.parseJSON(defaultCategoryJSON);
+
+    for (key in defaultCategoryIDs) {
+      if (defaultCategoryIDs.hasOwnProperty(key)) {
+        id = defaultCategoryIDs[key];
+        removeDefaultCatCheckBox(id);
+      }
+    }
+  }
+
+
+
 });
 
+/**
+ * Removes the checkbox for a given category from the DOM.
+ * @param catID
+ */
+function removeDefaultCatCheckBox(catID) {
+  var defaultCatCheckBox;
+
+  defaultCatCheckBox = jQuery('#cb-select-' + catID);
+
+  if (defaultCatCheckBox.length !== 0) {
+    defaultCatCheckBox.remove();
+  }
+}
